@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator
+from django.core.validators import EmailValidator
 # Create your models here.
 
 from django.db import models
@@ -15,8 +16,29 @@ CURRENCY_CHOICES = [
 
 class Vendor(models.Model):
     name = models.CharField(max_length=200)
+    # UNIQUE_VENDOR_REFERENCE_NUMBER	Vendor Name	Contact Person	Phone	BANK_ACCOUNT_NUMBER	BANK_IFSC	EMAIL	PHONE2	CONTACT PERSON3
+
+    reference_number = models.CharField(max_length=20)
+    phone = models.CharField(max_length=20)
+    bank_account_number = models.CharField(max_length=50)
+    bank_ifsc_code = models.CharField(max_length=50)
+
+    contact_person_1 = models.CharField(max_length=50)
+    email_1 = models.CharField(max_length=50, validators=[EmailValidator])
+    phone_1 = models.CharField(max_length=20)
+
+    contact_person_2 = models.CharField(max_length=50)
+    email_2 = models.CharField(max_length=50, validators=[EmailValidator])
+    phone_2 = models.CharField(max_length=20)
+
+    contact_person_2 = models.CharField(max_length=50)
+    email_2 = models.CharField(max_length=50, validators=[EmailValidator])
+    phone_2 = models.CharField(max_length=20)
+
 
 class PurchaseOrder(models.Model):
+    voucher_number = models.CharField(max_length=20)
+    purchse_order_date = models.DateField()
     invoice_to = models.ForeignKey(CompanyAddress)
     invoice_contact_person = models.ForeignKey(CompanyPerson)
 
@@ -32,7 +54,32 @@ class PurchaseOrder(models.Model):
     # IGST
     # Others(with text box)
     # Discount
-    
+
+    # Additional Charges
+    shipping_handling = models.DecimalField()
+    cgst = models.DecimalField()
+    sgst = models.DecimalField()
+    igst = models.DecimalField()
+    discount = models.DecimalField()
+
+    ####################### Other Charges ##################################
+
+    other_charges_text_1 = models.CharField(max_length=50)
+    other_charges_amount_1 = models.DecimalField()
+
+    other_charges_text_2 = models.CharField(max_length=50)
+    other_charges_amount_2 = models.DecimalField()
+
+    other_charges_text_3 = models.CharField(max_length=50)
+    other_charges_amount_3 = models.DecimalField()
+
+    other_charges_text_4 = models.CharField(max_length=50)
+    other_charges_amount_4 = models.DecimalField()
+
+    other_charges_text_5 = models.CharField(max_length=50)
+    other_charges_amount_5 = models.DecimalField()
+
+
     # Max Ten Items are supported
 
     ########################### ITEM 1 #######################################
