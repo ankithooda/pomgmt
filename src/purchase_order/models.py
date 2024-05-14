@@ -56,11 +56,11 @@ class CompanyPerson(models.Model):
 class PurchaseOrder(models.Model):
     voucher_number                = models.CharField(max_length=20)
     purchse_order_date            = models.DateField()
-    invoice_to                    = models.ForeignKey(CompanyAddress, on_delete=models.DO_NOTHING)
-    invoice_contact_person        = models.ForeignKey(CompanyPerson, on_delete=models.DO_NOTHING)
+    invoice_to                    = models.ForeignKey(CompanyAddress, on_delete=models.DO_NOTHING, related_name='invoice_to')
+    invoice_contact_person        = models.ForeignKey(CompanyPerson, on_delete=models.DO_NOTHING, related_name='invoice_person')
 
-    ship_to                       = models.ForeignKey(CompanyAddress, on_delete=models.DO_NOTHING)
-    ship_contact_person           = models.ForeignKey(CompanyPerson, on_delete=models.DO_NOTHING)
+    ship_to                       = models.ForeignKey(CompanyAddress, on_delete=models.DO_NOTHING, related_name='ship_to')
+    ship_contact_person           = models.ForeignKey(CompanyPerson, on_delete=models.DO_NOTHING, related_name='ship_person')
 
     vendor                        = models.ForeignKey(Vendor, on_delete=models.DO_NOTHING)
 
