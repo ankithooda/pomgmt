@@ -42,8 +42,8 @@ class CompanyAddress(models.Model):
     key           = models.CharField(max_length=20, unique=True)
     name          = models.CharField(max_length=50)
     line1         = models.CharField(max_length=100)
-    line2         = models.CharField(max_length=100)
-    line3         = models.CharField(max_length=100)
+    line2         = models.CharField(max_length=100, blank=True)
+    line3         = models.CharField(max_length=100, blank=True)
     city          = models.CharField(max_length=50)
     state         = models.CharField(max_length=50)
     country       = models.CharField(max_length=50)
@@ -93,12 +93,6 @@ class PurchaseOrder(models.Model):
 
     other_charges_text_3          = models.CharField(max_length=50, blank=True)
     other_charges_amount_3        = models.DecimalField(max_digits=10, decimal_places=2, null=True)
-
-    other_charges_text_4          = models.CharField(max_length=50, blank=True)
-    other_charges_amount_4        = models.DecimalField(max_digits=10, decimal_places=2, null=True)
-
-    other_charges_text_5          = models.CharField(max_length=50, blank=True)
-    other_charges_amount_5        = models.DecimalField(max_digits=10, decimal_places=2, null=True)
 
 
     # Max Ten Items are supported
