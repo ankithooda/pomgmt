@@ -35,6 +35,9 @@ class Vendor(models.Model):
     email_2               = models.CharField(max_length=50, validators=[EmailValidator], blank=True)
     phone_2               = models.CharField(max_length=20, blank=True)
 
+    def __str__(self):
+        return "{name}".format(name=self.name)
+
 class CompanyAddress(models.Model):
     key           = models.CharField(max_length=20, unique=True)
     name          = models.CharField(max_length=50)
@@ -48,10 +51,16 @@ class CompanyAddress(models.Model):
     website       = models.CharField(max_length=50)
     gstin         = models.CharField(max_length=50)
 
+    def __str__(self):
+        return "{key}-{name}".format(key=self.key, name=self.name)
+
 class CompanyPerson(models.Model):
     name          = models.CharField(max_length=50)
     phone         = models.CharField(max_length=50)
     email         = models.CharField(max_length=50)
+
+    def __str__(self):
+        return "{name}".format(name=self.name)
 
 class PurchaseOrder(models.Model):
     voucher_number                = models.CharField(max_length=20)
@@ -191,4 +200,7 @@ class PurchaseOrder(models.Model):
     unit_10              = models.CharField(max_length=20, choices=UNIT_CHOICES, blank=True)
     rate_10              = models.DecimalField(max_digits=10, decimal_places=2, null=True)
     amount_10            = models.DecimalField(max_digits=10, decimal_places=2, null=True)
+
+    def __str__(self):
+        return "{vname}-{date}".format(vname=self.vendor.name, date=self.date)
 
