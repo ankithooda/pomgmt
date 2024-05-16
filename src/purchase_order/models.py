@@ -15,8 +15,6 @@ CURRENCY_CHOICES = [
 
 class Vendor(models.Model):
 
-    # UNIQUE_VENDOR_REFERENCE_NUMBER	Vendor Name	Contact Person	Phone	BANK_ACCOUNT_NUMBER	BANK_IFSC	EMAIL	PHONE2	CONTACT PERSON3
-
     name                  = models.CharField(max_length=200, unique=True)
     reference_number      = models.CharField(max_length=20, unique=True)
     bank_account_number   = models.CharField(max_length=50, unique=True)
@@ -31,9 +29,9 @@ class Vendor(models.Model):
     email_2               = models.CharField(max_length=50, validators=[EmailValidator], blank=True)
     phone_2               = models.CharField(max_length=20, blank=True)
 
-    contact_person_2      = models.CharField(max_length=50, blank=True)
-    email_2               = models.CharField(max_length=50, validators=[EmailValidator], blank=True)
-    phone_2               = models.CharField(max_length=20, blank=True)
+    contact_person_3      = models.CharField(max_length=50, blank=True)
+    email_3               = models.CharField(max_length=50, validators=[EmailValidator], blank=True)
+    phone_3               = models.CharField(max_length=20, blank=True)
 
     def __str__(self):
         return "{name}".format(name=self.name)
